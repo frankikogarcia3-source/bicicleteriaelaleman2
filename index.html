@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bicicletería El Alemán · Santa Fe</title>
+<style>
+  :root{--principal:#b91c1c;--oscuro:#111827;--secundario:#f97316;--fondo:#f9fafb;--texto:#1f2937;--borde:#e5e7eb;--exito:#15803d}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--fondo);color:var(--texto);line-height:1.6}
+  header{background:var(--oscuro);color:#fff;position:sticky;top:0;z-index:10}
+  header .barra{max-width:1150px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;gap:12px;flex-wrap:wrap}
+  .logo{font-weight:800;font-size:1.3rem;letter-spacing:.5px}
+  .logo span{color:var(--secundario)}
+  nav a{color:#e5e7eb;text-decoration:none;margin-left:16px;font-weight:600;font-size:.95rem}
+  nav a:hover{color:var(--secundario)}
+  .btn-carrito{background:var(--secundario);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-weight:700;cursor:pointer}
+  .hero{background:linear-gradient(135deg,var(--oscuro),#7f1d1d);color:#fff;text-align:center;padding:80px 20px}
+  .hero h1{font-size:2.6rem;line-height:1.2}
+  .hero p{max-width:640px;margin:14px auto 0;color:#e5e7eb;font-size:1.05rem}
+  .hero .btn{display:inline-block;margin-top:22px;text-decoration:none}
+  section{max-width:1150px;margin:auto;padding:60px 20px}
+  h2{color:var(--principal);font-size:2rem;margin-bottom:8px}
+  .subtitulo{color:#6b7280;margin-bottom:28px}
+  .btn{background:var(--principal);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-weight:700;cursor:pointer;font-size:.95rem}
+  .btn:hover{background:var(--secundario)}
+  .btn-sec{background:#fff;color:var(--principal);border:2px solid var(--principal)}
+  .btn-sec:hover{background:var(--principal);color:#fff}
+  .filtros{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+  .filtros button{background:#fff;border:1px solid var(--borde);border-radius:20px;padding:6px 14px;cursor:pointer;font-weight:600;color:var(--texto)}
+  .filtros button.activo{background:var(--principal);color:#fff;border-color:var(--principal)}
+  .catalogo{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
+  .producto{background:#fff;border:1px solid var(--borde);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+  .producto .foto{height:170px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:4rem}
+  .producto .foto img{width:100%;height:100%;object-fit:cover}
+  .producto .info{padding:16px;display:flex;flex-direction:column;flex:1}
+  .producto .categoria{font-size:.75rem;text-transform:uppercase;color:var(--secundario);font-weight:700;letter-spacing:.5px}
+  .producto h3{font-size:1.05rem;margin:4px 0}
+  .precio{color:var(--principal);font-weight:800;font-size:1.2rem}
+  .producto button{margin-top:auto}
+  .resenas{margin-top:10px;font-size:.85rem;color:#6b7280}
+  .resenas blockquote{border-left:3px solid var(--secundario);padding-left:8px;margin-top:6px;font-style:italic}
+  .pagos{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+  .pago{background:#fff;border:1px solid var(--borde);border-radius:14px;padding:22px}
+  .pago .ico{font-size:2rem}
+  .pago h3{margin:8px 0 4px}
+  .pago p{color:#4b5563;font-size:.95rem}
+  .destacado{background:#eff6ff;border-color:#93c5fd}
+  .nosotros{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  @media(max-width:800px){.nosotros,.ia-grid,.contacto-grid{grid-template-columns:1fr!important}.hero h1{font-size:2rem}nav{display:none}}
+  .nosotros .caja{background:#fff;border-radius:16px;padding:30px;border:1px solid var(--borde)}
+  .valores{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;text-align:center}
+  .valores div{background:var(--fondo);border-radius:12px;padding:16px}
+  .valores strong{display:block;color:var(--principal);font-size:1.6rem}
+  #reconocer{background:#fff;border-radius:18px;border:1px solid var(--borde);max-width:1150px}
+  .ia-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .ia-visor{background:#111;border-radius:14px;min-height:300px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .ia-visor video,.ia-visor img{width:100%;height:100%;object-fit:contain;max-height:380px}
+  .ia-visor .vacio{color:#9ca3af;padding:20px;text-align:center}
+  .ia-botones{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .ia-barra{margin:8px 0}
+  .ia-barra .etiqueta{display:flex;justify-content:space-between;font-size:.9rem}
+  .ia-barra .fondo{background:#f3f4f6;border-radius:8px;height:12px;overflow:hidden}
+  .ia-barra .relleno{background:var(--principal);height:100%;width:0;transition:width .4s}
+  .ia-resultado{margin-top:14px;padding:16px;border-radius:12px;background:var(--fondo);border:1px solid var(--borde);min-height:90px}
+  .ia-resultado .nombre{font-size:1.3rem;font-weight:800}
+  .ia-resultado .aviso{color:#6b7280}
+  .demo{background:#fef3c7;border:1px solid #fcd34d;border-radius:10px;padding:10px;margin-top:12px;font-size:.9rem}
+  .contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .tarjeta{background:#fff;border:1px solid var(--borde);border-radius:14px;padding:24px}
+  .tarjeta h3{color:var(--principal);margin-bottom:10px}
+  .tarjeta a{color:var(--principal);font-weight:600}
+  .wsp{display:inline-block;margin-top:12px;background:#25d366;color:#fff;text-decoration:none;padding:10px 18px;border-radius:10px;font-weight:700}
+  .carrito{position:fixed;top:0;right:-380px;width:340px;max-width:90%;height:100%;background:#fff;box-shadow:-4px 0 16px rgba(0,0,0,.15);transition:right .3s;z-index:20;display:flex;flex-direction:column}
+  .carrito.abierto{right:0}
+  .carrito .cab{background:var(--oscuro);color:#fff;padding:16px;display:flex;justify-content:space-between;align-items:center}
+  .carrito .items{flex:1;overflow:auto;padding:16px}
+  .carrito .item{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #eee;padding:8px 0}
+  .carrito .pie{padding:16px;border-top:1px solid #eee;font-weight:800;display:flex;justify-content:space-between}
+  .carrito .pie-btn{padding:0 16px 16px}
+  .carrito .pie-btn .btn{width:100%}
+  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--exito);color:#fff;padding:12px 20px;border-radius:10px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:30}
+  .toast.ver{opacity:1}
+  footer{background:var(--oscuro);color:#d1d5db;padding:40px 20px;text-align:center;font-size:.9rem}
+  footer .logo{margin-bottom:6px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="barra">
+    <div class="logo">BICICLETERÍA <span>EL ALEMÁN</span></div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#pagos">Formas de pago</a>
+      <a href="#reconocer">Reconocer 🤖</a>
+      <a href="#nosotros">Sobre nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button class="btn-carrito" id="abrirCarrito">🛒 Pedido (<span id="cantCarrito">0</span>)</button>
+  </div>
+</header>
+
+<div class="hero" id="inicio">
+  <h1>Todo para tu bici,<br>en Santa Fe</h1>
+  <p>Bicicletas, repuestos y accesorios para ciclistas urbanos, de montaña y de ruta. Asesoramiento personalizado y service especializado.</p>
+  <a class="btn" href="#catalogo">Ver catálogo</a>
+</div>
+
+<section id="catalogo">
+  <h2>Catálogo</h2>
+  <p class="subtitulo">Bicicletas, componentes y accesorios. Agregá lo que necesités al pedido.</p>
+  <div class="filtros" id="filtros"></div>
+  <div class="catalogo" id="listaProductos"></div>
+</section>
+
+<section id="pagos">
+  <h2>Formas de pago</h2>
+  <p class="subtitulo">Pagá como te resulte más cómodo.</p>
+  <div class="pagos">
+    <div class="pago destacado">
+      <div class="ico">🤝</div>
+      <h3>Mercado Pago</h3>
+      <p>Pagá con tu cuenta, saldo, QR o link de pago. Cuotas disponibles según tu tarjeta.</p>
+    </div>
+    <div class="pago">
+      <div class="ico">💳</div>
+      <h3>Tarjeta de crédito y débito</h3>
+      <p>Visa, Mastercard, American Express y más. Consultá cuotas vigentes en el local.</p>
+    </div>
+    <div class="pago">
+      <div class="ico">🏦</div>
+      <h3>Transferencia bancaria</h3>
+      <p>Alias: <strong>ALEMAN.BICI</strong> (a confirmar). Enviá el comprobante por WhatsApp.</p>
+    </div>
+    <div class="pago">
+      <div class="ico">💵</div>
+      <h3>Efectivo</h3>
+      <p>Abonás en el local al retirar tu compra o al realizar el service.</p>
+    </div>
+  </div>
+</section>
+
+<section id="reconocer">
+  <h2>Reconocé tu producto</h2>
+  <p class="subtitulo">Mostrá la bici o el repuesto a la cámara, o subí una foto. La IA te dice qué es, cuánto cuesta y qué opinan otros clientes.</p>
+  <div class="ia-grid">
+    <div>
+      <div class="ia-visor" id="iaVisor">
+        <div class="vacio" id="iaVacio">Activá la cámara o subí una foto</div>
+        <video id="iaVideo" autoplay playsinline style="display:none"></video>
+        <img id="iaImagen" alt="Producto a reconocer" style="display:none">
+      </div>
+      <div class="ia-botones">
+        <button class="btn" id="btnCamara">📷 Usar cámara</button>
+        <button class="btn btn-sec" id="btnFoto">🖼️ Subir foto</button>
+        <button class="btn btn-sec" id="btnAnalizar" style="display:none">🔍 Reconocer</button>
+        <input type="file" id="inputFoto" accept="image/*" style="display:none">
+      </div>
+      <div class="demo" id="avisoDemo" style="display:none">
+        Modo demo: todavía no está configurado el modelo de Teachable Machine. Los resultados son de prueba.
+      </div>
+    </div>
+    <div>
+      <div id="iaBarras"></div>
+      <div class="ia-resultado" id="iaResultado">
+        <div class="aviso">Todavía no hay resultados.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="nosotros">
+  <h2>Sobre nosotros</h2>
+  <p class="subtitulo">Pasión por la bici desde el barrio.</p>
+  <div class="nosotros">
+    <div class="caja">
+      <p>Bicicletería El Alemán es un taller y local de venta ubicado en el corazón de Santa Fe capital. Nacimos con una idea simple: que cada ciclista, desde el que va al trabajo en la ciudad hasta el que sale a la montaña, encuentre el asesoramiento honesto y el repuesto justo.</p>
+      <p style="margin-top:12px">Trabajamos con marcas reconocidas, armamos bicicletas a medida y hacemos service completo: puesta a punto, frenos, cambios, ruedas y mantenimiento general.</p>
+    </div>
+    <div>
+      <div class="valores">
+        <div><strong>+10</strong>marcas y repuestos</div>
+        <div><strong>100%</strong>service propio</div>
+        <div><strong>Garantía</strong>en cada reparación</div>
+      </div>
+      <p style="margin-top:20px;color:#4b5563">Visitanos en 9 de Julio 2389, Santa Fe. Te asesoramos sin compromiso.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <h2>Contacto</h2>
+  <p class="subtitulo">Escribinos, llamanos o pasá por el local.</p>
+  <div class="contacto-grid">
+    <div class="tarjeta">
+      <h3>Bicicletería El Alemán</h3>
+      <p>📍 Santa Fe Argentina 3000<br>9 de Julio 2389, Santa Fe, Argentina</p>
+      <p style="margin-top:8px">📞 342 3429234923</p>
+      <p style="margin-top:8px">🕒 Lunes a sábados de 9:00 a 13:00 y de 16:00 a 20:30 (a confirmar)</p>
+      <p style="margin-top:8px">🗺️ <a href="https://www.google.com/maps/search/?api=1&query=9+de+Julio+2389+Santa+Fe+Argentina" target="_blank">Ver en Google Maps</a></p>
+      <a class="wsp" href="https://wa.me/5493429234923" target="_blank">Escribinos por WhatsApp</a>
+    </div>
+    <div class="tarjeta">
+      <h3>Enviános un mensaje</h3>
+      <p style="color:#4b5563">Si preferís, escribinos por correo a <a href="mailto:contacto@elaleman.com.ar">contacto@elaleman.com.ar</a> (a confirmar) y te respondemos a la brevedad.</p>
+    </div>
+  </div>
+</section>
+
+<aside class="carrito" id="carrito">
+  <div class="cab">
+    <span style="font-weight:800;font-size:1.1rem">Tu pedido</span>
+    <button class="btn-carrito" id="cerrarCarrito">✕</button>
+  </div>
+  <div class="items" id="itemsCarrito"></div>
+  <div class="pie"><span>Total</span><span id="totalCarrito">$0</span></div>
+  <div class="pie-btn"><button class="btn" id="btnEnviarPedido">Enviar pedido por WhatsApp</button></div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<footer>
+  <div class="logo">BICICLETERÍA EL ALEMÁN</div>
+  <p>9 de Julio 2389 · Santa Fe, Argentina · 342 3429234923</p>
+  <p style="margin-top:10px">© Bicicletería El Alemán · Todos los derechos reservados</p>
+</footer>
+<!-- Librerías de TensorFlow.js y Teachable Machine -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8.3/dist/teachablemachine-image.min.js"></script>
+<script>
+/* ===== CATÁLOGO =====
+   Para agregar una foto: poné el archivo en la carpeta img/ y completá el campo "img".
+   Si "img" queda vacío, se muestra el emoji. */
+const productos = [
+  { id: 1, categoria: "Bicicletas", nombre: "Bicicleta de montaña Rodado 29", precio: 450000, emoji: "🚵", img: "bicicletamontaña.png", resenas: [
+      { texto: "Muy firme en bajada y los frenos responden genial.", autor: "Lucas" } ] },
+  { id: 2, categoria: "Bicicletas", nombre: "Bicicleta urbana Rodado 26", precio: 380000, emoji: "🚲", img: "bicistunt.png", resenas: [
+      { texto: "Ideal para ir al trabajo, liviana y cómoda.", autor: "Valeria" } ] },
+  { id: 3, categoria: "Bicicletas", nombre: "Bicicleta de ruta Rodado 700", precio: 620000, emoji: "🚴", img: "Bicicleta de ruta Rodado 700", resenas: [
+      { texto: "Rapidísima, el armado en el local fue impecable.", autor: "Matías" } ] },
+  { id: 4, categoria: "Bicicletas", nombre: "Bicicleta plegable Rodado 20", precio: 350000, emoji: "🛴", img: "bicicletaplegable.png", resenas: [
+      { texto: "Entra en el baúl y pesa poco. La recomiendo.", autor: "Carla" } ] },
+  { id: 5, categoria: "Componentes", nombre: "Pastillas de freno (juego)", precio: 12000, emoji: "🛑", img: "pastillasdefreno.png", resenas: [
+      { texto: "Frenan mucho mejor que las originales.", autor: "Diego" } ] },
+  { id: 6, categoria: "Componentes", nombre: "Cubierta 26\" x 1.95", precio: 18000, emoji: "⭕", img: "cubiertas.png", resenas: [
+      { texto: "Buen agarre en asfalto mojado.", autor: "Paula" } ] },
+  { id: 7, categoria: "Componentes", nombre: "Cámara de aire 26\"", precio: 6000, emoji: "🔘", img: "camaradeaire.png", resenas: [
+      { texto: "Cambio rápido y precio justo.", autor: "Sebastián" } ] },
+  { id: 8, categoria: "Componentes", nombre: "Cadena 9 velocidades", precio: 15000, emoji: "🔗", img: "cadena9v.png", resenas: [
+      { texto: "Cambios suaves desde que la puse.", autor: "Andrea" } ] },
+  { id: 9, categoria: "Componentes", nombre: "Juego de pedales", precio: 22000, emoji: "⚙️", img: "pedales.png", resenas: [
+      { texto: "Muy sólidos y con buen rodamiento.", autor: "Gonzalo" } ] },
+  { id: 10, categoria: "Accesorios", nombre: "Casco de ciclista", precio: 45000, emoji: "⛑️", img: "casco.png", resenas: [
+      { texto: "Liviano y con buena ventilación.", autor: "Camila" } ] }
+];
+
+/* ===== CARRITO ===== */
+let carrito = [];
+const WHATSAPP = "5493429234923";
+let filtroActual = "Todos";
+
+const buscarProducto = id => productos.find(p => p.id === id);
+const formatearPrecio = n => "$" + n.toLocaleString("es-AR");
+
+function agregarAlCarrito(id) {
+  const p = buscarProducto(id);
+  if (!p) return;
+  const existe = carrito.find(i => i.id === id);
+  if (existe) existe.cantidad++;
+  else carrito.push({ id, cantidad: 1 });
+  actualizarCarrito();
+  mostrarToast(p.nombre + " agregado al pedido");
+}
+function quitarDelCarrito(id) {
+  const item = carrito.find(i => i.id === id);
+  if (!item) return;
+  item.cantidad--;
+  if (item.cantidad <= 0) carrito = carrito.filter(i => i.id !== id);
+  actualizarCarrito();
+}
+function actualizarCarrito() {
+  const cont = document.getElementById("itemsCarrito");
+  let total = 0, cant = 0;
+  cont.innerHTML = carrito.length ? "" : "<p>Tu pedido está vacío.</p>";
+  carrito.forEach(i => {
+    const p = buscarProducto(i.id);
+    total += p.precio * i.cantidad;
+    cant += i.cantidad;
+    const div = document.createElement("div");
+    div.className = "item";
+    div.innerHTML = `<span>${p.nombre} x${i.cantidad}</span>
+      <span><strong>${formatearPrecio(p.precio * i.cantidad)}</strong>
+      <button onclick="quitarDelCarrito(${p.id})" style="border:none;background:none;cursor:pointer;color:#b91c1c;font-weight:800">−</button></span>`;
+    cont.appendChild(div);
+  });
+  document.getElementById("totalCarrito").textContent = formatearPrecio(total);
+  document.getElementById("cantCarrito").textContent = cant;
+}
+function enviarPedido() {
+  if (!carrito.length) return mostrarToast("Tu pedido está vacío");
+  let total = 0;
+  const lineas = carrito.map(i => {
+    const p = buscarProducto(i.id);
+    total += p.precio * i.cantidad;
+    return `- ${i.cantidad} x ${p.nombre} (${formatearPrecio(p.precio * i.cantidad)})`;
+  });
+  const msg = `Hola! Quiero hacer este pedido:\n${lineas.join("\n")}\nTotal: ${formatearPrecio(total)}`;
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank");
+}
+function mostrarToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("ver");
+  setTimeout(() => t.classList.remove("ver"), 1800);
+}
+
+/* ===== RENDER CATÁLOGO ===== */
+function renderFiltros() {
+  const cats = ["Todos", ...new Set(productos.map(p => p.categoria))];
+  document.getElementById("filtros").innerHTML = cats.map(c =>
+    `<button class="${c === filtroActual ? "activo" : ""}" onclick="filtrar('${c}')">${c}</button>`).join("");
+}
+function filtrar(cat) {
+  filtroActual = cat;
+  renderFiltros();
+  renderCatalogo();
+}
+function renderCatalogo() {
+  const lista = filtroActual === "Todos" ? productos : productos.filter(p => p.categoria === filtroActual);
+  document.getElementById("listaProductos").innerHTML = lista.map(p => `
+    <div class="producto">
+      <div class="foto">${p.img ? `<img src="${p.img}" alt="${p.nombre}">` : p.emoji}</div>
+      <div class="info">
+        <div class="categoria">${p.categoria}</div>
+        <h3>${p.nombre}</h3>
+        <div class="precio">${formatearPrecio(p.precio)}</div>
+        <div class="resenas">${p.resenas.map(r => `<blockquote>"${r.texto}" – ${r.autor}</blockquote>`).join("")}</div>
+        <button class="btn" onclick="agregarAlCarrito(${p.id})">Agregar al pedido</button>
+      </div>
+    </div>`).join("");
+}
+
+document.getElementById("abrirCarrito").onclick = () => document.getElementById("carrito").classList.add("abierto");
+document.getElementById("cerrarCarrito").onclick = () => document.getElementById("carrito").classList.remove("abierto");
+document.getElementById("btnEnviarPedido").onclick = enviarPedido;
+
+/* ===== RECONOCEDOR CON IA (Teachable Machine) =====
+   PASO 1: pegá el enlace de tu modelo exportado (termina en /) */
+const URL_MODELO = "https://teachablemachine.withgoogle.com/models/rilWD9D0w/";
+/* PASO 2: nombre exacto de cada clase en Teachable Machine -> id del producto. "Nada" va con null */
+const clasesIA = {
+  "Bicicleta de montaña": 1,
+  "Bicicleta urbana": 2,
+  "Bicicleta de ruta": 3,
+  "Bicicleta plegable": 4,
+  "Pastillas de freno": 5,
+  "Cubierta": 6,
+  "Cámara de aire": 7,
+  "Cadena": 8,
+  "Pedales": 9,
+  "Casco": 10,
+  "Nada": null
+};
+/* PASO 3: seguridad mínima para reconocer (0.8 = 80%) */
+const UMBRAL = 0.8;
+
+let modelo = null;
+let stream = null;
+const $ = id => document.getElementById(id);
+
+async function cargarModelo() {
+  if (!URL_MODELO) {
+    $("avisoDemo").style.display = "block";
+    return null;
+  }
+  if (!modelo) modelo = await tmImage.load(URL_MODELO + "model.json", URL_MODELO + "metadata.json");
+  return modelo;
+}
+function mostrarFuente(tipo) {
+  $("iaVacio").style.display = "none";
+  $("iaVideo").style.display = tipo === "video" ? "block" : "none";
+  $("iaImagen").style.display = tipo === "imagen" ? "block" : "none";
+  $("btnAnalizar").style.display = "inline-block";
+}
+$("btnCamara").onclick = async () => {
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false });
+    $("iaVideo").srcObject = stream;
+    mostrarFuente("video");
+  } catch (e) {
+    mostrarToast("No se pudo acceder a la cámara");
+  }
+};
+$("btnFoto").onclick = () => $("inputFoto").click();
+$("inputFoto").onchange = e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  $("iaImagen").src = URL.createObjectURL(file);
+  mostrarFuente("imagen");
+};
+function obtenerFuente() {
+  if ($("iaImagen").style.display === "block") return $("iaImagen");
+  if ($("iaVideo").style.display === "block") {
+    const c = document.createElement("canvas");
+    c.width = $("iaVideo").videoWidth;
+    c.height = $("iaVideo").videoHeight;
+    c.getContext("2d").drawImage($("iaVideo"), 0, 0);
+    return c;
+  }
+  return null;
+}
+function pintarBarras(preds) {
+  $("iaBarras").innerHTML = preds.slice(0, 4).map(p => `
+    <div class="ia-barra">
+      <div class="etiqueta"><span>${p.className}</span><span>${Math.round(p.probability * 100)}%</span></div>
+      <div class="fondo"><div class="relleno" style="width:${p.probability * 100}%"></div></div>
+    </div>`).join("");
+}
+function mostrarResultado(mejor) {
+  const res = $("iaResultado");
+  const id = clasesIA[mejor.className];
+  if (mejor.probability < UMBRAL || id === undefined || id === null) {
+    res.innerHTML = `<div class="nombre">No reconocimos ningún producto</div>
+      <div class="aviso">Probá con otra foto, con más luz o más cerca del producto.</div>`;
+    return;
+  }
+  const p = buscarProducto(id);
+  res.innerHTML = `
+    <div class="nombre">${p.emoji} ${p.nombre}</div>
+    <div class="precio">${formatearPrecio(p.precio)}</div>
+    <div class="resenas">${p.resenas.map(r => `<blockquote>"${r.texto}" – ${r.autor}</blockquote>`).join("")}</div>
+    <div style="margin-top:10px"><button class="btn" onclick="agregarAlCarrito(${p.id})">Agregar al pedido</button></div>`;
+}
+function predecirDemo() {
+  const nombres = Object.keys(clasesIA);
+  const vals = nombres.map(() => Math.random());
+  const suma = vals.reduce((a, b) => a + b, 0);
+  const preds = nombres.map((n, i) => ({ className: n, probability: vals[i] / suma }));
+  return preds.sort((a, b) => b.probability - a.probability);
+}
+$("btnAnalizar").onclick = async () => {
+  $("iaResultado").innerHTML = `<div class="aviso">Analizando...</div>`;
+  try {
+    let preds;
+    if (URL_MODELO) {
+      const m = await cargarModelo();
+      const fuente = obtenerFuente();
+      if (!fuente) return mostrarToast("Primero activá la cámara o subí una foto");
+      preds = (await m.predict(fuente)).sort((a, b) => b.probability - a.probability);
+    } else {
+      await cargarModelo();
+      preds = predecirDemo();
+    }
+    pintarBarras(preds);
+    mostrarResultado(preds[0]);
+  } catch (e) {
+    $("iaResultado").innerHTML = `<div class="aviso">Hubo un error al analizar la imagen.</div>`;
+  }
+};
+
+renderFiltros();
+renderCatalogo();
+actualizarCarrito();
+</script>
+</body>
+</html>
