@@ -1,0 +1,78 @@
+:root{--principal:#b91c1c;--oscuro:#111827;--secundario:#f97316;--fondo:#f9fafb;--texto:#1f2937;--borde:#e5e7eb;--exito:#15803d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--fondo);color:var(--texto);line-height:1.6}
+header{background:var(--oscuro);color:#fff;position:sticky;top:0;z-index:10}
+header .barra{max-width:1150px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;gap:12px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:1.3rem;letter-spacing:.5px}
+.logo span{color:var(--secundario)}
+nav a{color:#e5e7eb;text-decoration:none;margin-left:16px;font-weight:600;font-size:.95rem}
+nav a:hover{color:var(--secundario)}
+.btn-carrito{background:var(--secundario);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-weight:700;cursor:pointer}
+.hero{background:linear-gradient(135deg,var(--oscuro),#7f1d1d);color:#fff;text-align:center;padding:80px 20px}
+.hero h1{font-size:2.6rem;line-height:1.2}
+.hero p{max-width:640px;margin:14px auto 0;color:#e5e7eb;font-size:1.05rem}
+.hero .btn{display:inline-block;margin-top:22px;text-decoration:none}
+section{max-width:1150px;margin:auto;padding:60px 20px}
+h2{color:var(--principal);font-size:2rem;margin-bottom:8px}
+.subtitulo{color:#6b7280;margin-bottom:28px}
+.btn{background:var(--principal);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-weight:700;cursor:pointer;font-size:.95rem}
+.btn:hover{background:var(--secundario)}
+.btn-sec{background:#fff;color:var(--principal);border:2px solid var(--principal)}
+.btn-sec:hover{background:var(--principal);color:#fff}
+.filtros{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.filtros button{background:#fff;border:1px solid var(--borde);border-radius:20px;padding:6px 14px;cursor:pointer;font-weight:600;color:var(--texto)}
+.filtros button.activo{background:var(--principal);color:#fff;border-color:var(--principal)}
+.catalogo{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px}
+.producto{background:#fff;border:1px solid var(--borde);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+.producto .foto{height:170px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-size:4rem}
+.producto .foto img{width:100%;height:100%;object-fit:cover}
+.producto .info{padding:16px;display:flex;flex-direction:column;flex:1}
+.producto .categoria{font-size:.75rem;text-transform:uppercase;color:var(--secundario);font-weight:700;letter-spacing:.5px}
+.producto h3{font-size:1.05rem;margin:4px 0}
+.precio{color:var(--principal);font-weight:800;font-size:1.2rem}
+.producto button{margin-top:auto}
+.resenas{margin-top:10px;font-size:.85rem;color:#6b7280}
+.resenas blockquote{border-left:3px solid var(--secundario);padding-left:8px;margin-top:6px;font-style:italic}
+.pagos{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.pago{background:#fff;border:1px solid var(--borde);border-radius:14px;padding:22px}
+.pago .ico{font-size:2rem}
+.pago h3{margin:8px 0 4px}
+.pago p{color:#4b5563;font-size:.95rem}
+.destacado{background:#eff6ff;border-color:#93c5fd}
+.nosotros{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+@media(max-width:800px){.nosotros,.ia-grid,.contacto-grid{grid-template-columns:1fr!important}.hero h1{font-size:2rem}nav{display:none}}
+.nosotros .caja{background:#fff;border-radius:16px;padding:30px;border:1px solid var(--borde)}
+.valores{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;text-align:center}
+.valores div{background:var(--fondo);border-radius:12px;padding:16px}
+.valores strong{display:block;color:var(--principal);font-size:1.6rem}
+#reconocer{background:#fff;border-radius:18px;border:1px solid var(--borde);max-width:1150px}
+.ia-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.ia-visor{background:#111;border-radius:14px;min-height:300px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ia-visor video,.ia-visor img{width:100%;height:100%;object-fit:contain;max-height:380px}
+.ia-visor .vacio{color:#9ca3af;padding:20px;text-align:center}
+.ia-botones{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.ia-barra{margin:8px 0}
+.ia-barra .etiqueta{display:flex;justify-content:space-between;font-size:.9rem}
+.ia-barra .fondo{background:#f3f4f6;border-radius:8px;height:12px;overflow:hidden}
+.ia-barra .relleno{background:var(--principal);height:100%;width:0;transition:width .4s}
+.ia-resultado{margin-top:14px;padding:16px;border-radius:12px;background:var(--fondo);border:1px solid var(--borde);min-height:90px}
+.ia-resultado .nombre{font-size:1.3rem;font-weight:800}
+.ia-resultado .aviso{color:#6b7280}
+.demo{background:#fef3c7;border:1px solid #fcd34d;border-radius:10px;padding:10px;margin-top:12px;font-size:.9rem}
+.contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.tarjeta{background:#fff;border:1px solid var(--borde);border-radius:14px;padding:24px}
+.tarjeta h3{color:var(--principal);margin-bottom:10px}
+.tarjeta a{color:var(--principal);font-weight:600}
+.wsp{display:inline-block;margin-top:12px;background:#25d366;color:#fff;text-decoration:none;padding:10px 18px;border-radius:10px;font-weight:700}
+.carrito{position:fixed;top:0;right:-380px;width:340px;max-width:90%;height:100%;background:#fff;box-shadow:-4px 0 16px rgba(0,0,0,.15);transition:right .3s;z-index:20;display:flex;flex-direction:column}
+.carrito.abierto{right:0}
+.carrito .cab{background:var(--oscuro);color:#fff;padding:16px;display:flex;justify-content:space-between;align-items:center}
+.carrito .items{flex:1;overflow:auto;padding:16px}
+.carrito .item{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #eee;padding:8px 0}
+.carrito .pie{padding:16px;border-top:1px solid #eee;font-weight:800;display:flex;justify-content:space-between}
+.carrito .pie-btn{padding:0 16px 16px}
+.carrito .pie-btn .btn{width:100%}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--exito);color:#fff;padding:12px 20px;border-radius:10px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:30}
+.toast.ver{opacity:1}
+footer{background:var(--oscuro);color:#d1d5db;padding:40px 20px;text-align:center;font-size:.9rem}
+footer .logo{margin-bottom:6px}
